@@ -31,17 +31,17 @@ def dump(grid):
 
 
 def solve(data):
-    pprint(data)
+    # pprint(data)
     X = max(v[2] for v in data.values())
     Y = max(v[3] for v in data.values())
     grid = [[0 for x in range(X + 1)] for y in range(Y + 1)]
-    dump(grid)
+    # dump(grid)
     for k in sorted(data.keys()):
         (x0, y0, x1, y1) = data[k]
         for x in range(x0, x1 + 1):
             for y in range(y0, y1 + 1):
                 grid[y][x] += 1
-        dump(grid)
+        # dump(grid)
     overlaps = 0
     for row in grid:
         for c in row:
