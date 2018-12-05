@@ -8,3 +8,5 @@ def test_examples():
     d = advent03.parse(s)
     assert advent03.solve(d) == 4
 
+    assert advent03.solve2(d) == 3
+

@@ -50,7 +50,30 @@ def solve(data):
     return overlaps
 
 
+def solve2(data):
+    # pprint(data)
+    X = max(v[2] for v in data.values())
+    Y = max(v[3] for v in data.values())
+    grid = [[[] for x in range(X + 1)] for y in range(Y + 1)]
+    # dump(grid)
+    for k in sorted(data.keys()):
+        (x0, y0, x1, y1) = data[k]
+        for x in range(x0, x1 + 1):
+            for y in range(y0, y1 + 1):
+                grid[y][x].append(k)
+        # dump(grid)
+    # find overlapping IDs
+    non_overlapping = set(data.keys())
+    for row in grid:
+        for c in row:
+            if len(c) > 1:
+                non_overlapping -= set(c)
+    assert len(non_overlapping) == 1
+    return non_overlapping.pop()
+
+
 if __name__ == '__main__':
     data = open(sys.argv[1]).read()
     data = parse(data)
     print(solve(data))
+    print(solve2(data))
