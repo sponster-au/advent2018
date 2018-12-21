@@ -22,7 +22,20 @@ def solve(data):
     return data
 
 
+def solve2(data):
+    X = []
+    for c in sorted(set(d.lower() for d in data)):
+        C = c.upper()
+        dd = data.replace(c, "").replace(C, "")
+        x = solve(dd)
+        # print(c, data, dd, x)
+        X.append(x)
+    X = sorted(X, key=len)
+    return X[0]
+
+
 if __name__ == '__main__':
     data = open(sys.argv[1]).read()
     data = parse(data)
-    print(solve(data))
+    print(len(solve(data)))
+    print(len(solve2(data)))
